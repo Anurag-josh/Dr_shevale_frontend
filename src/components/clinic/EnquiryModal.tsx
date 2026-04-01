@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { API_BASE_URL } from "@/lib/apiConfig";
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -27,7 +28,7 @@ const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     }
     setLoading(true);
     try {
-      const response = await fetch('/api/enquiries', {
+      const response = await fetch(`${API_BASE_URL}/api/enquiries`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

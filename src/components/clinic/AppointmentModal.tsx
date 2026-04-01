@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
+import { API_BASE_URL } from "@/lib/apiConfig";
 
 interface AppointmentModalProps {
   isOpen: boolean;
@@ -52,7 +53,7 @@ const AppointmentModal = ({ isOpen, onClose }: AppointmentModalProps) => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/appointments', {
+      const response = await fetch(`${API_BASE_URL}/api/appointments`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
