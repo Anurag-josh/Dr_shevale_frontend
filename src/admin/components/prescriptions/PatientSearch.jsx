@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, ArrowRight, UserX, Users } from 'lucide-react';
 import axios from 'axios';
-
+import { API_BASE_URL } from '@/lib/apiConfig';
 // ─── Inline premium styles ────────────────────────────────────────────────────
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -241,7 +241,7 @@ const PatientSearch = ({ onSelectPatient }) => {
             if (query.trim().length < 2) { setResults([]); return; }
             setLoading(true);
             try {
-                const res = await axios.get(`http://localhost:5000/api/patients/search?query=${query}`);
+                const res = await axios.get(`${API_BASE_URL}/api/patients/search?query=${query}`);
                 setResults(res.data.data);
             } catch (err) {
                 console.error('Error searching patients:', err);

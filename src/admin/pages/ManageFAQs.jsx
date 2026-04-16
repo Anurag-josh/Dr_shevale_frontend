@@ -3,6 +3,7 @@ import { Plus, Edit2, Trash2, HelpCircle, CheckCircle2, X, MessageSquare } from 
 import { useToast } from "@/components/ui/use-toast";
 import AdminSidebar from '../components/AdminSidebar';
 import AdminNavbar from '../components/AdminNavbar';
+import { API_BASE_URL } from '@/lib/apiConfig';
 
 // ─── Inline premium styles (mirrors ManageTestimonials design system) ─────────
 const styles = `
@@ -375,7 +376,7 @@ const ManageFAQs = () => {
 
     const fetchFAQs = async () => {
         try {
-            const res = await fetch('https://dr-shevale-server-yzyg.onrender.com/api/faqs');
+            const res = await fetch(`${API_BASE_URL}/api/faqs`);
             const data = await res.json();
             if (data.success) setFaqs(data.data);
         } catch {
@@ -397,8 +398,8 @@ const ManageFAQs = () => {
         setSubmitting(true);
         try {
             const url = editingId
-                ? `http://localhost:5000/api/faqs/${editingId}`
-                : 'http://localhost:5000/api/faqs';
+                ? `${API_BASE_URL}/api/faqs/${editingId}`
+                : `${API_BASE_URL}/api/faqs`;
 
             const res = await fetch(url, {
                 method: editingId ? 'PUT' : 'POST',
@@ -435,7 +436,7 @@ const ManageFAQs = () => {
     const confirmDelete = async () => {
         if (!deleteTarget) return;
         try {
-            const res = await fetch(`http://localhost:5000/api/faqs/${deleteTarget}`, {
+            const res = await fetch(`${API_BASE_URL}/api/faqs/${deleteTarget}`, {
                 method: 'DELETE',
                 headers: getAuthHeaders(),
             });

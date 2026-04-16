@@ -3,6 +3,7 @@ import axios from 'axios';
 import { differenceInYears } from 'date-fns';
 import { FileText, Plus, Calendar, User, Phone, Hash, Clock, Stethoscope, Pill } from 'lucide-react';
 import { toast } from 'sonner';
+import { API_BASE_URL } from '@/lib/apiConfig';
 
 // ─── Inline premium styles ────────────────────────────────────────────────────
 const styles = `
@@ -310,7 +311,7 @@ const PatientHistory = ({ patient, onBack, onCreateNew, onViewPrescription }) =>
         if (!patient._id) return;
         const fetch = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/prescriptions/patient/${patient._id}`);
+                const res = await axios.get(`${API_BASE_URL}/api/prescriptions/patient/${patient._id}`);
                 setPrescriptions(res.data.data);
             } catch (err) {
                 console.error('Error fetching patient history', err);
