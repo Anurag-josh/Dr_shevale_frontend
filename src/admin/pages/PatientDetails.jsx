@@ -179,7 +179,7 @@ const PatientDetails = () => {
 
     const fetchPatient = async () => {
         try {
-            const res = await fetch(`https://dr-shevale-server.onrender.com/api/patients/${id}`);
+            const res = await fetch(`https://dr-shevale-server-yzyg.onrender.com/api/patients/${id}`);
             const data = await res.json();
             setPatient(data.data);
             setForm({
@@ -195,7 +195,7 @@ const PatientDetails = () => {
 
     const handleUpdate = async () => {
         try {
-            await fetch(`https://dr-shevale-server.onrender.com/api/patients/${id}`, {
+            await fetch(`https://dr-shevale-server-yzyg.onrender.com/api/patients/${id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(form)

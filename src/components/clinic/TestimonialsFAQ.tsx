@@ -49,7 +49,7 @@ const VideoCard = ({ testimonial, isHovered, onHover, onLeave, onClick }: VideoC
     }
   }, [isHovered]);
 
-  const rawSrc = testimonial.video.startsWith('/uploads/') ? `https://dr-shevale-server.onrender.com${testimonial.video}` : testimonial.video.startsWith('/assets/') ? `/videos/${testimonial.video.split('/').pop()}` : testimonial.video;
+  const rawSrc = testimonial.video.startsWith('/uploads/') ? `https://dr-shevale-server-yzyg.onrender.com${testimonial.video}` : testimonial.video.startsWith('/assets/') ? `/videos/${testimonial.video.split('/').pop()}` : testimonial.video;
   // Append #t=0.001 to force browser to load the first frame as a poster/thumbnail securely
   const videoSrc = rawSrc.includes('#') ? rawSrc : `${rawSrc}#t=0.001`;
 
@@ -205,14 +205,14 @@ const TestimonialsFAQ = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch('https://dr-shevale-server.onrender.com/api/testimonials')
+    fetch('https://dr-shevale-server-yzyg.onrender.com/api/testimonials')
       .then(res => res.json())
       .then(data => {
         if (data.success) setTestimonials(data.data);
       })
       .catch(console.error);
 
-    fetch('https://dr-shevale-server.onrender.com/api/faqs')
+    fetch('https://dr-shevale-server-yzyg.onrender.com/api/faqs')
       .then(res => res.json())
       .then(data => {
         if (data.success) setFaqs(data.data);
@@ -486,7 +486,7 @@ const TestimonialsFAQ = () => {
             </button>
             <video
               src={(() => {
-                const rawSrc = activeVideo.video.startsWith('/uploads/') ? `https://dr-shevale-server.onrender.com${activeVideo.video}` : activeVideo.video.startsWith('/assets/') ? `/videos/${activeVideo.video.split('/').pop()}` : activeVideo.video;
+                const rawSrc = activeVideo.video.startsWith('/uploads/') ? `https://dr-shevale-server-yzyg.onrender.com${activeVideo.video}` : activeVideo.video.startsWith('/assets/') ? `/videos/${activeVideo.video.split('/').pop()}` : activeVideo.video;
                 return rawSrc;
               })()}
               className="w-full max-h-[85vh] object-contain"

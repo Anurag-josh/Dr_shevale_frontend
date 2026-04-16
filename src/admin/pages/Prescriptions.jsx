@@ -306,7 +306,7 @@ const Prescriptions = () => {
         setLoading(true);
         try {
             const payload = { ...formData, patient: selectedPatient._id };
-            const res = await axios.post('https://dr-shevale-server.onrender.com/api/prescriptions', payload);
+            const res = await axios.post('https://dr-shevale-server-yzyg.onrender.com/api/prescriptions', payload);
             toast.success('Prescription created successfully!');
             handleViewPrescription(res.data.data);
         } catch (err) {

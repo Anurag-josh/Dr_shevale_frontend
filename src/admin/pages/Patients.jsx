@@ -310,7 +310,7 @@ const Patients = () => {
 
     const fetchPatients = async () => {
         try {
-            const res = await fetch('https://dr-shevale-server.onrender.com/api/patients');
+            const res = await fetch('https://dr-shevale-server-yzyg.onrender.com/api/patients');
             const data = await res.json();
             setPatients(data.data || []);
         } catch (e) { console.error("Fetch error", e); }
@@ -321,7 +321,7 @@ const Patients = () => {
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this patient? This action cannot be undone.')) {
             try {
-                const res = await fetch(`https://dr-shevale-server.onrender.com/api/patients/${id}`, { method: 'DELETE' });
+                const res = await fetch(`https://dr-shevale-server-yzyg.onrender.com/api/patients/${id}`, { method: 'DELETE' });
                 if (res.ok) fetchPatients();
             } catch (error) {
                 alert('Server error while deleting');
@@ -336,7 +336,7 @@ const Patients = () => {
         const payload = { ...form };
         if (!payload.gender) delete payload.gender;
         try {
-            const res = await fetch('https://dr-shevale-server.onrender.com/api/patients', {
+            const res = await fetch('https://dr-shevale-server-yzyg.onrender.com/api/patients', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

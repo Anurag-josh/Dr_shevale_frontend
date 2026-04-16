@@ -375,7 +375,7 @@ const ManageFAQs = () => {
 
     const fetchFAQs = async () => {
         try {
-            const res = await fetch('https://dr-shevale-server.onrender.com/api/faqs');
+            const res = await fetch('https://dr-shevale-server-yzyg.onrender.com/api/faqs');
             const data = await res.json();
             if (data.success) setFaqs(data.data);
         } catch {

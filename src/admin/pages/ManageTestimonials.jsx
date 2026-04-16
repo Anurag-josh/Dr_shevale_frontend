@@ -410,7 +410,7 @@ const ManageTestimonials = () => {
 
     const fetchTestimonials = async () => {
         try {
-            const res = await fetch('https://dr-shevale-server.onrender.com/api/testimonials');
+            const res = await fetch('https://dr-shevale-server-yzyg.onrender.com/api/testimonials');
             const data = await res.json();
             if (data.success) setTestimonials(data.data);
         } catch {
@@ -439,8 +439,8 @@ const ManageTestimonials = () => {
         setSubmitting(true);
         try {
             const url = editingId
-                ? `https://dr-shevale-server.onrender.com/api/testimonials/${editingId}`
-                : 'https://dr-shevale-server.onrender.com/api/testimonials';
+                ? `https://dr-shevale-server-yzyg.onrender.com/api/testimonials/${editingId}`
+                : 'https://dr-shevale-server-yzyg.onrender.com/api/testimonials';
             const submitData = new FormData();
             Object.entries(formData).forEach(([k, v]) => submitData.append(k, v));
             if (videoFile) submitData.append('video', videoFile);
@@ -479,7 +479,7 @@ const ManageTestimonials = () => {
     const confirmDelete = async () => {
         if (!deleteTarget) return;
         try {
-            const res = await fetch(`https://dr-shevale-server.onrender.com/api/testimonials/${deleteTarget}`, {
+            const res = await fetch(`https://dr-shevale-server-yzyg.onrender.com/api/testimonials/${deleteTarget}`, {
                 method: 'DELETE',
                 headers: getAuthHeaders(),
             });
@@ -718,7 +718,7 @@ const ManageTestimonials = () => {
                                                     <td>
                                                         {testi.video ? (
                                                             <a
-                                                                href={testi.video.startsWith('/') ? `https://dr-shevale-server.onrender.com${testi.video}` : testi.video}
+                                                                href={testi.video.startsWith('/') ? `https://dr-shevale-server-yzyg.onrender.com${testi.video}` : testi.video}
                                                                 target="_blank"
                                                                 rel="noreferrer"
                                                                 className="mt-video-pill"
