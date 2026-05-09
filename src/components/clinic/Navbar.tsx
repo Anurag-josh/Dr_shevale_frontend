@@ -12,7 +12,7 @@ import {
 interface NavbarProps {
   onAppointmentClick: () => void;
 }
-
+//Talk
 const Navbar = ({ onAppointmentClick }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();
@@ -78,12 +78,12 @@ const Navbar = ({ onAppointmentClick }: NavbarProps) => {
 
         {/* Right side Actions */}
         <div className="flex items-center gap-3 pr-4 lg:pr-0">
-          <Button
+          {/* <Button
             className="px-5 py-2 lg:px-7 lg:py-5 rounded-full text-xs md:text-sm bg-white text-public-primary hover:bg-white/90 font-bold border-none transition-all duration-300 shadow-md transform hover:-translate-y-0.5"
             onClick={onAppointmentClick}
           >
             {t("common.get_appointment")}
-          </Button>
+          </Button> */}
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

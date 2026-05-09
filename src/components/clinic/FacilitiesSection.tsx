@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Clock, AlertTriangle, CheckCircle2, Activity, Stethoscope } from "lucide-react";
-
+//Emergency
 // ─── Utility Functions ────────────────────────────────────────────────────────
 
 const getYouTubeEmbedUrl = (url: string): string => {

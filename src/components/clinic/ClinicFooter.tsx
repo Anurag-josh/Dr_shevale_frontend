@@ -1,7 +1,7 @@
 import { Phone, Mail, Clock, MapPin, Facebook, Youtube } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-
+//Emergency 
 interface ClinicFooterProps {
   onContactClick: () => void;
 }
@@ -55,9 +55,9 @@ const ClinicFooter = ({ onContactClick }: ClinicFooterProps) => {
             </button>
           </div>
 
-          <Button variant="contact" size="lg" onClick={onContactClick} className="w-full sm:w-auto">
+          {/* <Button variant="contact" size="lg" onClick={onContactClick} className="w-full sm:w-auto">
             {t('nav.contact')}
-          </Button>
+          </Button> */}
         </div>
       </div>
 

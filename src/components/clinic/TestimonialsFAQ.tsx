@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronLeft, ChevronRight, Play, Pause, Plus, Minus, Star } from "lucide-react";
 import { API_BASE_URL } from "@/lib/apiConfig";
-
+//Talk
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 interface VideoTestimonial {
@@ -202,6 +202,8 @@ const TestimonialsFAQ = () => {
   const [hoveredId, setHoveredId] = useState<string | number | null>(null);
   const [activeVideo, setActiveVideo] = useState<VideoTestimonial | null>(null);
   const [testimonials, setTestimonials] = useState<VideoTestimonial[]>([]);
+  const [showContactCard, setShowContactCard] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [faqs, setFaqs] = useState<FAQType[]>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -457,14 +459,14 @@ const TestimonialsFAQ = () => {
           <p className="text-muted-foreground text-sm mb-4">
             {t("testimonials_faq.still_have_questions")}
           </p>
-          <a
-            href="#contact"
+          <button
+            onClick={() => setShowContactCard(true)}
             className="inline-flex items-center gap-2 text-white text-sm font-semibold px-7 py-3 rounded-full transition-all hover:shadow-xl hover:-translate-y-0.5"
             style={{ background: "#1a2a4a" }}
           >
             {t("testimonials_faq.talk_to_our_team")}
             <ChevronRight className="w-4 h-4" />
-          </a>
+          </button>
         </div>
       </div>
 
@@ -495,6 +497,54 @@ const TestimonialsFAQ = () => {
               autoPlay
               playsInline
             />
+          </div>
+        </div>
+      )}
+      {/* Contact Popup */}
+      {showContactCard && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4"
+          onClick={() => setShowContactCard(false)}
+        >
+          <div
+            className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-2xl text-center relative"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setShowContactCard(false)}
+              className="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition"
+            >
+              ✕
+            </button>
+
+            <h3 className="text-2xl font-bold text-gray-800 mb-2">
+              Contact Our Team
+            </h3>
+
+            <p className="text-gray-500 text-sm mb-6">
+              Call us directly or copy the number below
+            </p>
+
+            <div className="bg-gray-100 rounded-xl px-4 py-3 mb-5">
+              <p className="text-xl font-semibold text-gray-800">
+                +91 7447445121
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText("+91 7447445121");
+                setCopied(true);
+
+                setTimeout(() => {
+                  setCopied(false);
+                }, 2000);
+              }}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition"
+            >
+              {copied ? "Copied!" : "Copy Number"}
+            </button>
           </div>
         </div>
       )}

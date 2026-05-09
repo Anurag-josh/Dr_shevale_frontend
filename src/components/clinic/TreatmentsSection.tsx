@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Clock, AlertTriangle, CheckCircle2, Activity } from "lucide-react";
 
 // ─── Utility Functions ────────────────────────────────────────────────────────
-
+//Appointment
 const getYouTubeEmbedUrl = (url: string): string => {
   // Extract video ID from various YouTube URL formats
   let videoId = "";

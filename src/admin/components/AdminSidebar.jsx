@@ -16,10 +16,10 @@ const AdminSidebar = ({ collapsed, setCollapsed }) => {
     const location = useLocation();
 
     const menuItems = [
-        { title: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
-        { title: 'Patients', path: '/admin/patients', icon: LayoutDashboard },
-        { title: 'Prescriptions', path: '/admin/prescriptions', icon: Calendar },
-        { title: 'Appointments', path: '/admin/appointments', icon: Calendar },
+        // { title: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
+        // { title: 'Patients', path: '/admin/patients', icon: LayoutDashboard },
+        // { title: 'Prescriptions', path: '/admin/prescriptions', icon: Calendar },
+        // { title: 'Appointments', path: '/admin/appointments', icon: Calendar },
         // { title: 'Enquiries', path: '/admin/enquiries', icon: MessageSquare },
         // { title: 'Banners', path: '/admin/banners', icon: ImageIcon },
         { title: 'Testimonials', path: '/admin/testimonials', icon: Star },

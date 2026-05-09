@@ -12,7 +12,7 @@ interface EnquiryModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
+//Emergency
 const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
   const { t } = useTranslation();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });

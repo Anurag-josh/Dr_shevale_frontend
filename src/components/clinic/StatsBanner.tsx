@@ -11,7 +11,7 @@ interface Stat {
   label?: string;
   labelKey?: string;
 }
-
+//Talk
 const useCountUp = (target: number, shouldAnimate: boolean, duration = 2000) => {
   const [count, setCount] = useState(0);
   useEffect(() => {

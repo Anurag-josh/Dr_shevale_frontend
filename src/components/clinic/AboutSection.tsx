@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const AboutSection = () => {
   const { t } = useTranslation();
-
+//Emergency
   return (
     <section id="about" className="section-padding bg-public-light">
       <div className="container-clinic grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
