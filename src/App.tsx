@@ -32,7 +32,7 @@ const App = () => (
             path="/admin/dashboard"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <ManageTestimonials />
               </ProtectedRoute>
             }
           />
