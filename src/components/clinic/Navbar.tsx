@@ -12,7 +12,7 @@ import {
 interface NavbarProps {
   onAppointmentClick: () => void;
 }
-//Talk
+//GALLERY
 const Navbar = ({ onAppointmentClick }: NavbarProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { t, i18n } = useTranslation();

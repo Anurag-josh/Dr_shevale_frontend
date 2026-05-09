@@ -8,6 +8,7 @@ import AboutSection from "@/components/clinic/AboutSection";
 import TreatmentsSection from "@/components/clinic/TreatmentsSection";
 import AppointmentBanner from "@/components/clinic/AppointmentBanner";
 import FacilitiesSection from "@/components/clinic/FacilitiesSection";
+import Gallery from "@/components/clinic/Gallery";
 import StatsBanner from "@/components/clinic/StatsBanner";
 import TestimonialsFAQ from "@/components/clinic/TestimonialsFAQ";
 import ClinicFooter from "@/components/clinic/ClinicFooter";
@@ -31,6 +32,7 @@ const Index = () => {
       <TreatmentsSection />
       <AppointmentBanner onBookClick={() => setAppointmentOpen(true)} />
       <FacilitiesSection />
+      <Gallery />
       <StatsBanner />
       <TestimonialsFAQ />
       <ClinicFooter onContactClick={() => setEnquiryOpen(true)} />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bell, User, LogOut, Menu } from 'lucide-react';
-
+//dashboard
 const AdminNavbar = ({ toggleSidebar }) => {
     return (
         <div className="admin-navbar">
