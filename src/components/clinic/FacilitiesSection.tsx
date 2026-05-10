@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Clock, AlertTriangle, CheckCircle2, Activity, Stethoscope } from "lucide-react";
-//Emergency
+//button
 // ─── Utility Functions ────────────────────────────────────────────────────────
 
 const getYouTubeEmbedUrl = (url: string): string => {
@@ -281,15 +281,8 @@ const FacilityModal = ({ facility, onClose }: FacilityModalProps) => {
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="pt-2 border-t border-gray-100">
-              <button
-                onClick={onClose}
-                className="w-full py-3 rounded-xl bg-public-secondary text-white font-semibold text-sm hover:bg-public-secondary/85 transition-colors duration-200"
-              >
-                {t("common.book_this_service") || "Book This Service"} →
-              </button>
-            </div>
+
+          
           </div>
         </motion.div>
       </motion.div>

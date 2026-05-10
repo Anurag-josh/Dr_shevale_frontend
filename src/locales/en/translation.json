@@ -38,7 +38,7 @@
         "clinic_subname": "Sai Heart Care",
         "clinic_location": "Solapur, Maharashtra",
         "visiting_hours": "Visiting Hours",
-        "hours_value": "03:00 pm - 07:00 pm",
+        "hours_value": "2 - 6 pm",
         "make_appointment": "Make an Appointment"
     },
     "about": {
@@ -55,7 +55,7 @@
         "contact_us": "Contact Us",
         "get_in_touch": "Get in Touch",
         "description": "Dr. Sunil Shewale is a renowned Interventional Cardiologist providing comprehensive cardiac care at his state-of-the-art clinic in Solapur.",
-        "visiting_hours": "05:00 am - 09:00 pm",
+        "visiting_hours": "2 - 6 pm",
         "copyright": "Copyright © 2026 Dr. Sunil Shewale Superspeciality Heart Care. All Rights Reserved."
     },
     "treatments": {

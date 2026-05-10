@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Clock, AlertTriangle, CheckCircle2, Activity } from "lucide-react";
 
 // ─── Utility Functions ────────────────────────────────────────────────────────
-//Appointment
+//button
 const getYouTubeEmbedUrl = (url: string): string => {
   // Extract video ID from various YouTube URL formats
   let videoId = "";
@@ -323,15 +323,8 @@ const TreatmentModal = ({ treatment, onClose }: TreatmentModalProps) => {
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="pt-2 border-t border-gray-100">
-              <button
-                onClick={onClose}
-                className="w-full py-3 rounded-xl bg-public-secondary text-white font-semibold text-sm hover:bg-public-secondary/85 transition-colors duration-200"
-              >
-                {t("common.book_consultation") || "Book a Consultation"} →
-              </button>
-            </div>
+
+            
           </div>
         </motion.div>
       </motion.div>
