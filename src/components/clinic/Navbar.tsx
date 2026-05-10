@@ -37,7 +37,7 @@ const Navbar = ({ onAppointmentClick }: NavbarProps) => {
     { label: t("nav.facilities"), key: "FACILITIES" },
     { label: t("nav.gallery"), key: "GALLERY" },
     { label: t("nav.faq"), key: "FAQ" },
-    { label: t("nav.enquiry"), key: "ENQUIRY" },
+    // { label: t("nav.enquiry"), key: "ENQUIRY" },
     { label: t("nav.contact"), key: "CONTACT" },
   ];
 

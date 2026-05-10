@@ -1,7 +1,8 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useEffect, memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronLeft, ChevronRight, Play, Pause, Plus, Minus, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, Pause, Plus, Minus, Star, Loader2 } from "lucide-react";
 import { API_BASE_URL } from "@/lib/apiConfig";
+import TestimonialSkeleton from "./TestimonialSkeleton";
 //Talk
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -34,9 +35,29 @@ interface VideoCardProps {
   onClick: () => void;
 }
 
-const VideoCard = ({ testimonial, isHovered, onHover, onLeave, onClick }: VideoCardProps) => {
+const VideoCard = memo(({ testimonial, isHovered, onHover, onLeave, onClick }: VideoCardProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Lazy load video metadata when in viewport
+  useEffect(() => {
+    if (!cardRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" } // Start loading when 200px from viewport
+    );
+
+    observer.observe(cardRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   // Play / pause driven by parent hover state
   useEffect(() => {
@@ -71,21 +92,26 @@ const VideoCard = ({ testimonial, isHovered, onHover, onLeave, onClick }: VideoC
       onMouseLeave={onLeave}
       onClick={onClick}
     >
-      {/* Video element */}
-      <video
-        ref={videoRef}
-        src={videoSrc}
-        poster={testimonial.thumbnail}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{
-          transform: isHovered ? "scale(1.06)" : "scale(1)",
-          transition: "transform 0.7s cubic-bezier(.22,1,.36,1)",
-        }}
-      />
+      <div 
+        ref={cardRef}
+        className="absolute inset-0 w-full h-full"
+      >
+        {/* Video element */}
+        <video
+          ref={videoRef}
+          src={videoSrc}
+          poster={testimonial.thumbnail}
+          muted
+          loop
+          playsInline
+          preload={isHovered || isIntersecting ? "metadata" : "none"}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{
+            transform: isHovered ? "scale(1.06)" : "scale(1)",
+            transition: "transform 0.7s cubic-bezier(.22,1,.36,1)",
+          }}
+        />
+      </div>
 
       {/* Deep cinematic gradient */}
       <div
@@ -192,7 +218,7 @@ const VideoCard = ({ testimonial, isHovered, onHover, onLeave, onClick }: VideoC
       </div>
     </div>
   );
-};
+});
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
@@ -205,22 +231,28 @@ const TestimonialsFAQ = () => {
   const [showContactCard, setShowContactCard] = useState(false);
   const [copied, setCopied] = useState(false);
   const [faqs, setFaqs] = useState<FAQType[]>([]);
+  const [isLoadingTestimonials, setIsLoadingTestimonials] = useState(true);
+  const [isLoadingFaqs, setIsLoadingFaqs] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    setIsLoadingTestimonials(true);
     fetch(`${API_BASE_URL}/api/testimonials`)
       .then(res => res.json())
       .then(data => {
         if (data.success) setTestimonials(data.data);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoadingTestimonials(false));
 
+    setIsLoadingFaqs(true);
     fetch(`${API_BASE_URL}/api/faqs`)
       .then(res => res.json())
       .then(data => {
         if (data.success) setFaqs(data.data);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoadingFaqs(false));
   }, []);
 
   const scroll = (dir: "left" | "right") => {
@@ -315,7 +347,13 @@ const TestimonialsFAQ = () => {
               .scroll-track::-webkit-scrollbar { display: none; }
             `}</style>
 
-            {testimonials.length > 0 ? (
+            {isLoadingTestimonials ? (
+              Array.from({ length: 5 }).map((_, i) => (
+                <div key={i} className="flex-shrink-0">
+                  <TestimonialSkeleton />
+                </div>
+              ))
+            ) : testimonials.length > 0 ? (
               testimonials.map((t) => (
                 <div
                   key={t._id || t.id}
@@ -389,7 +427,14 @@ const TestimonialsFAQ = () => {
         </div>
 
         <div className="space-y-3">
-          {faqs.length > 0 ? (
+          {isLoadingFaqs ? (
+            <div className="flex flex-col items-center justify-center py-12 gap-4">
+              <Loader2 className="w-8 h-8 text-public-primary animate-spin" />
+              <p className="text-muted-foreground text-sm">
+                Loading questions...
+              </p>
+            </div>
+          ) : faqs.length > 0 ? (
             faqs.map((faq, index) => {
               const isOpen = openFAQ === index;
               return (
